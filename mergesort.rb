@@ -4,8 +4,8 @@ def mergesort(array)
   return if array.length < 2 #guard clause for single element arrays & empty arrays
 
   left = array.select { |element| array.index(element) < (array.length / 2) }
-  p left
   right = array.select { |element| array.index(element) >= (array.length / 2) }
+  p left
   p right
   mergesort(left)
   mergesort(right)
