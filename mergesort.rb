@@ -1,19 +1,17 @@
-array = [6, 5]
+array = [4, 2, 3, 5, 1]
 
 def mergesort(array)
-  return if array.length < 2 #guard clause for single element arrays & empty arrays
+  return array if array.length < 2 #guard clause for single element arrays & empty arrays
 
-  left = array.select { |element| array.index(element) < (array.length / 2) }
-  right = array.select { |element| array.index(element) >= (array.length / 2) }
-  p left
-  p right
-  if left.length == 1 && right.length == 1
-    left[0] < right[0] ? merge = [left, right].flatten : merge = [right, left].flatten
-  else
-    mergesort(left)
-    mergesort(right)
+  half = array.length / 2
+  left = mergesort(array[0...half])
+  right = mergesort(array[half..array.length])
+  sorted = []
+
+  until left.empty? || right.empty?
+    left[0] <= right[0] ? sorted << left.shift : sorted << right.shift
   end
-  p merge
+  sorted + left + right #this gets returned
 end
 
-mergesort(array)
+p mergesort(array)
